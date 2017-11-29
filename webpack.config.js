@@ -1,14 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const extractCSS = new ExtractTextPlugin({filename:'[name].bundle.css', allChunks:true})
 
 // "./libs/peer.js",
 module.exports = {
     entry: {
-        app:["react-hot-loader/patch",'@front/app.dev.js']
+        app:["react-hot-loader/patch",'@front/index.dev.js']
         ,
         vendor:[
             "axios" ,
@@ -56,7 +55,7 @@ module.exports = {
                 options:{
                     "cacheDirectory": true,
                     "presets": [["es2015", { "modules": false }], "stage-0", "react"],
-                    "plugins": [ "react-hot-loader/babel" ]
+                    "plugins": [ "react-hot-loader/babel","transform-decorators-legacy" ]
                 },
             },
             {
