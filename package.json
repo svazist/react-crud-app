@@ -4,7 +4,9 @@
   "description": "Тестовое приложения работы с моделями даных",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=dev webpack-dev-server  --config webpack.dev.config.js --open --progress ",
+    "build": "webpack --config webpack.production.config.js --color --progress -p"
   },
   "keywords": [
     "react"
@@ -12,6 +14,9 @@
   "author": "Fedorov Philipp <svazist@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.17.1",
+    "babel-polyfill": "^6.26.0",
+    "history": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
@@ -27,6 +32,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-runtime": "^6.26.0",
+    "clean-webpack-plugin": "^0.1.17",
     "compression-webpack-plugin": "^1.0.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "html-webpack-plugin": "^2.30.1",
