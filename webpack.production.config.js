@@ -29,6 +29,7 @@ module.exports = {
             "redux" ,
             "react-router-redux" ,
             "redux-thunk",
+            'bootstrap/dist/css/bootstrap.css'
         ]
     },
     output: {
@@ -123,7 +124,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                exclude: /node_modules/,
+                // exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: [
