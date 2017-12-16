@@ -63,10 +63,8 @@ export default class List extends Component {
                 activePage={page} />)
         }
 
-        const addLink = "/"+entityId+"/add";
-        // debugger;
         return (<Panel header="Список элементов" footer={footer}>
-            <ButtonItem href={addLink} button={{bsStyle:"success"}} >
+            <ButtonItem href={`/${entityId}/add`} button={{bsStyle:"success"}} >
                 <Glyphicon glyph={"plus"} />&nbsp; Создать элемент
             </ButtonItem>
                 <Table fill responsive hover striped>

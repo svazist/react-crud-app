@@ -3,7 +3,10 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from "redux";
 
 import * as actions from '@redux/entities/actions/index'
-import {MenuItem} from '../ui/tools/bootstrap-links'
+import Index from '@ui/entities/Index'
+import Markdown from 'react-markdown';
+import {Panel, Table} from 'react-bootstrap'
+
 
 
 class HomeComponent extends Component {
@@ -12,11 +15,14 @@ class HomeComponent extends Component {
     }
 
     render(){
-        return (<div className="row">
-                    <div className="col-sm-9 col-md-10 main">
-                        <h1>Доступные справочники</h1>
-                        <MenuItem href="/department"> entity-1 </MenuItem>
-                        <MenuItem href="/employeer"> entity-2 </MenuItem>
+        return (<div className="row main">
+                    <div className="col-sm-3 col-md-4 ">
+                        <Index {...this.props} />
+                    </div>
+                    <div className="col-sm-9 col-md-8 ">
+                        <Panel header="О проекте">
+                            <Markdown source={require('@front/static/about.md')} />
+                        </Panel>
                     </div>
                 </div>)
     }
@@ -24,6 +30,7 @@ class HomeComponent extends Component {
 function mapStateToProps(state) {
     return {
         view: state.view,
+        entities: state.metadata.entities,
     }
 }
 

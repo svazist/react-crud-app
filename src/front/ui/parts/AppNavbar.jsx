@@ -15,7 +15,7 @@ export default function AppNavbar() {
       <Nav pullRight>
           <NavItem eventKey={1} href="/about"><Glyphicon glyph="info-sign" /> О проекте</NavItem>
           <OriginalNavItem href="https://github.com/svazist/react-crud-app" target="_blank">
-              GitHub
+              <Glyphicon glyph="hdd" /> GitHub
           </OriginalNavItem>
       </Nav>
   </Navbar>)
