@@ -2,26 +2,44 @@ import React,{Component} from 'react'
 import { connect } from 'react-redux'
 import {bindActionCreators} from "redux";
 
-import * as actions from '@redux/entities/actions'
+import * as actions from '@redux/entities/actions/index'
+import Edit from '@ui/entities/Edit'
 
 
 class EditComponent extends Component {
 
-    render(){
-        const { entity, id } = this.props.match.params;
+    componentDidMount(){
+        const {itemId, actionsItem,actionsMetadata, entityId} = this.props;
+        actionsMetadata.load();
+        actionsItem.load(entityId, itemId);
+    };
+    componentWillUnmount(){
+        this.props.actionsItem.clean();
+    }
 
-        return ( <h2>EditComponent {entity} {id}</h2> )
+    render(){
+        return ( <Edit {...this.props} /> )
     }
 }
 function mapStateToProps(state,ownProps) {
+    const entityId = ownProps.match.params.entity;
+    const itemId = parseInt(ownProps.match.params.id);
+    const activeItemData = state.entities.entities.find(item => item.id == itemId);
+
     return {
-        view: state.view,
+        activeItem:state.activeItem,
+        fields:(state.metadata.entities[entityId])?state.metadata.entities[entityId].fields:[],
+        entityId:entityId,
+        history:ownProps.history,
+        itemId:itemId,
+        activeItemData:activeItemData||{}
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(actions, dispatch),
+        actionsItem: bindActionCreators(actions.ITEM, dispatch),
+        actionsMetadata: bindActionCreators(actions.METADATA, dispatch),
     }
 }
 

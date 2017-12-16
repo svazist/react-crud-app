@@ -54,7 +54,7 @@ module.exports = {
                 loader: 'babel-loader',
                 options:{
                     "cacheDirectory": true,
-                    "presets": [["es2015", { "modules": false }], "stage-0", "react"],
+                    "presets": [["env", { "modules": false }], "stage-0", "react"],
                     "plugins": [ "react-hot-loader/babel","transform-decorators-legacy" ]
                 },
             },
@@ -80,6 +80,10 @@ module.exports = {
             {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'url-loader?name=./fonts/[name].[ext]'
+            },
+            {
+                test: /\.(md)$/,
+                loader: 'raw-loader'
             }
         ],
     },

@@ -2,27 +2,37 @@ import React,{Component} from 'react'
 import { connect } from 'react-redux'
 import {bindActionCreators} from "redux";
 
+import Add  from '@front/ui/entities/Add'
 
-import * as actions from '@redux/entities/actions'
+import * as actions from '@redux/entities/actions/index'
 
 
 class AddComponent extends Component {
-
+    componentDidMount(){
+        this.props.actionsMetadata.load();
+    };
+    componentWillUnmount(){
+        this.props.actionsItem.clean();
+    }
     render(){
-        const { entity } = this.props.match.params;
-        return ( <h2>AddComponent {entity}</h2> )
+        return ( <Add {...this.props} /> )
     }
 }
 function mapStateToProps(state,ownProps) {
+    const entityId = ownProps.match.params.entity;
 
     return {
-        view: state.view,
+        activeItem:state.activeItem,
+        fields:(state.metadata.entities[entityId])?state.metadata.entities[entityId].fields:[],
+        entityId:entityId,
+        history:ownProps.history,
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(actions, dispatch),
+        actionsItem: bindActionCreators(actions.ITEM, dispatch),
+        actionsMetadata: bindActionCreators(actions.METADATA, dispatch),
     }
 }
 

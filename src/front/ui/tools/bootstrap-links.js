@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { LinkContainer } from 'react-router-bootstrap';
 
-
-import { MenuItem as OriginalMenuItem, NavItem as OriginalNavItem } from 'react-bootstrap';
+import { MenuItem as OriginalMenuItem, NavItem as OriginalNavItem , Button as OriginalButton } from 'react-bootstrap';
 
 export const MenuItem = ({ href, ...props }, { router }) => (
     <LinkContainer to={href}>
@@ -12,22 +10,14 @@ export const MenuItem = ({ href, ...props }, { router }) => (
     // <OriginalMenuItem onClick={e => {e.preventDefault();router.transitionTo(href)}} href={href} {...props}/>
 );
 
-// MenuItem.contextTypes = {
-//     router: PropTypes.any
-// };
-
 export const NavItem = ({ href, ...props }, { router }) => {
-    //
-    // console.log('props', props);
-    // console.log('href', href);
-
-
     return (<LinkContainer to={href}>
                 <OriginalNavItem eventKey={props.enterKey}>{props.children}</OriginalNavItem>
             </LinkContainer>);
 }
-    // <OriginalNavItem onClick={e => {e.preventDefault();router.transitionTo(href)}} href={href} {...props}/>
+export const ButtonItem = ({ href, button, ...props }, { router }) => {
 
-// NavItem.contextTypes = {
-//     router: PropTypes.any
-// };
+    return (<LinkContainer to={href} {...props}>
+                <OriginalButton eventKey={props.enterKey} {...button}>{props.children}</OriginalButton>
+            </LinkContainer>);
+};

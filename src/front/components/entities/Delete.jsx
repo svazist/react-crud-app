@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from "redux";
 
 import * as actions from '@redux/entities/actions/index'
-import View from '@ui/entities/View'
+import Delete from '@ui/entities/Delete'
 
-class ViewComponent extends Component {
+class DeleteComponent extends Component {
     componentDidMount(){
         const {itemId, actionsMetadata, actionsItem, entityId} = this.props;
         actionsMetadata.load();
@@ -16,7 +16,7 @@ class ViewComponent extends Component {
     }
 
     render(){
-        return ( <View  {...this.props}/> )
+        return ( <Delete {...this.props}/> )
     }
 }
 
@@ -25,7 +25,6 @@ function mapStateToProps(state,ownProps) {
     const itemId = ownProps.match.params.id;
     const activeItemData = state.entities.entities.find(item => item.id == itemId);
 
-    // debugger;
     return {
         activeItem:state.activeItem,
         fields:(state.metadata.entities[entityId])?state.metadata.entities[entityId].fields:[],
@@ -45,4 +44,4 @@ function mapDispatchToProps(dispatch) {
 
 
 //
-export default connect(mapStateToProps, mapDispatchToProps)(ViewComponent)
+export default connect(mapStateToProps, mapDispatchToProps)(DeleteComponent)

@@ -3,12 +3,17 @@ import { connect } from 'react-redux'
 import {bindActionCreators} from "redux";
 import { withRouter } from 'react-router-dom'
 
-import * as actions from '@redux/entities/actions'
+import * as actions from '@redux/entities/actions/index'
 
 import App from '@ui/App'
 
 
 class AppComponent extends Component {
+
+    componentWillMount(){
+        this.props.actions.load();
+    }
+
 
     render(){
         return (<App>{this.props.children}</App>)
@@ -22,7 +27,7 @@ function mapStateToProps(state,ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        // actions: bindActionCreators(actions, dispatch),
+        actions: bindActionCreators(actions.METADATA, dispatch),
     }
 }
 

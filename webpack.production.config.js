@@ -119,7 +119,7 @@ module.exports = {
                 loader: 'babel-loader',
                 options:{
                     "cacheDirectory": true,
-                    "presets": [["es2015", { "modules": false }], "stage-0", "react"],
+                    "presets": [["env", { "modules": false }], "stage-0", "react"],
                     "plugins": [ "react-hot-loader/babel" ]
                 },
             },
