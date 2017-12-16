@@ -17,9 +17,8 @@ module.exports = {
     entry: {
         app: [
             'babel-polyfill',
-            '@front/app.production.js'
+            '@front/index.production.js'
         ],
-
         vendor:[
             "axios" ,
             "history" ,
@@ -120,13 +119,11 @@ module.exports = {
                 options:{
                     "cacheDirectory": true,
                     "presets": [["env", { "modules": false }], "stage-0", "react"],
-                    "plugins": [ "react-hot-loader/babel" ]
                 },
             },
             {
                 test: /\.css$/,
-                // exclude: /node_modules/,
-                include: /node_modules/,
+                exclude: /node_modules/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: [
@@ -156,6 +153,10 @@ module.exports = {
                 use: [
                     'url-loader?limit=10000'
                 ]
+            },
+            {
+                test: /\.(md)$/,
+                loader: 'raw-loader'
             }
         ]
     }

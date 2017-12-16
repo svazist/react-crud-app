@@ -8,7 +8,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { createHashHistory } from 'history'
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import configureStore from '@redux/store'
+import configureStore from '@redux/store.dev'
 
 
 import {DevTools} from './components/DevTools'
